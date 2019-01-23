@@ -63,7 +63,7 @@
                 <div class="form-group">
                     <label for="sel1">Select an option (1 disagree up to 5 agree)</label>
                     <select class="form-control" id="sel1">
-                            <option>1</option>
+                            <option>Please Select</option><option>1</option>
                             <option>2</option>
                             <option>3</option>
                             <option>4</option>
@@ -85,7 +85,7 @@
                 <div class="form-group">
                     <label for="sel2">Select an option (1 disagree up to 5 agree)</label>
                     <select class="form-control" id="sel2">
-                            <option>1</option>
+                            <option>Please Select</option><option>1</option>
                             <option>2</option>
                             <option>3</option>
                             <option>4</option>
@@ -107,11 +107,11 @@
                 <div class="form-group">
                     <label for="sel3">Select an option (1 disagree up to 5 agree)</label>
                     <select class="form-control" id="sel3">
-                            <option>1</option>
+                            <option>Please Select</option><option>1</option>
                             <option>2</option>
                             <option>3</option>
                             <option>4</option>
-                            <option>5)</option>
+                            <option>5</option>
                         </select>
                 </div>
             </div>
@@ -129,7 +129,7 @@
                 <div class="form-group">
                     <label for="sel4">Select an option (1 disagree up to 5 agree)</label>
                     <select class="form-control" id="sel4">
-                            <option>1</option>
+                            <option>Please Select</option><option>1</option>
                             <option>2</option>
                             <option>3</option>
                             <option>4</option>
@@ -151,7 +151,7 @@
                 <div class="form-group">
                     <label for="sel5">Select an option (1 disagree up to 5 agree)</label>
                     <select class="form-control" id="sel5">
-                            <option>1</option>
+                            <option>Please Select</option><option>1</option>
                             <option>2</option>
                             <option>3</option>
                             <option>4</option>
@@ -173,7 +173,7 @@
                 <div class="form-group">
                     <label for="sel6">Select an option (1 disagree up to 5 agree)</label>
                     <select class="form-control" id="sel6">
-                            <option>1</option>
+                            <option>Please Select</option><option>1</option>
                             <option>2</option>
                             <option>3</option>
                             <option>4</option>
@@ -195,7 +195,7 @@
                 <div class="form-group">
                     <label for="sel7">Select an option (1 disagree up to 5 agree)</label>
                     <select class="form-control" id="sel7">
-                            <option>1</option>
+                            <option>Please Select</option><option>1</option>
                             <option>2</option>
                             <option>3</option>
                             <option>4</option>
@@ -217,7 +217,7 @@
                 <div class="form-group">
                     <label for="sel8">Select an option (1 disagree up to 5 agree)</label>
                     <select class="form-control" id="sel8">
-                            <option>1</option>
+                            <option>Please Select</option><option>1</option>
                             <option>2</option>
                             <option>3</option>
                             <option>4</option>
@@ -239,7 +239,7 @@
                 <div class="form-group">
                     <label for="sel9">Select an option (1 disagree up to 5 agree)</label>
                     <select class="form-control" id="sel9">
-                            <option>1</option>
+                            <option>Please Select</option><option>1</option>
                             <option>2</option>
                             <option>3</option>
                             <option>4</option>
@@ -260,7 +260,7 @@
                     <div class="form-group">
                         <label for="sel10">Select an option (1 disagree up to 5 agree)</label>
                         <select class="form-control" id="sel10">
-                                <option>1</option>
+                                <option>Please Select</option><option>1</option>
                                 <option>2</option>
                                 <option>3</option>
                                 <option>4</option>
@@ -301,11 +301,26 @@
                     $("#sel10").val(),
                 ]
             };
+            // console.log(newFriend.scores);
+            // input validation
+            var ok = true;
+            for (var i = 0; i < 10; i++) {
+                if (newFriend.scores[i] === "Please Select") ok = false;
+            }
+            // check name is there
+            if (newFriend.name.length === 0) {
+                ok = false;
+            }
+            if (ok) {
+                console.log("post new friend", newFriend)
+                $.post("/api/friends", newFriend,
+                    function(data) {
+                        alert("Closest friend: " + data);
+                    });
+            } else {
+                alert("please answer all questions")
+            }
 
-            $.post("/api/friends", newFriend,
-                function(data) {
-                    alert("Closest friend: " + data);
-                });
         });
     </script>
 </body>
