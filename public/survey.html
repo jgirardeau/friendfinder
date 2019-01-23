@@ -316,6 +316,7 @@
                 $.post("/api/friends", newFriend,
                     function(data) {
                         alert("Closest friend: " + data);
+                        window.location = "/";
                     });
             } else {
                 alert("please answer all questions")
